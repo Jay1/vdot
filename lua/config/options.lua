@@ -54,7 +54,7 @@ local options = {
   updatetime = 200, -- Save swap file and trigger CursorHold
   wildmode = "longest:full,full", -- Command-line completion mode
   winminwidth = 5, -- Minimum window width
-  wrap = false, -- Disable line wrap
+  wrap = true, -- Disable line wrap
 }
 
 for k, v in pairs(options) do -- This for loop is just a fancy way to set the options
@@ -68,3 +68,6 @@ end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+-- Change the break column color at the 80th column
+-- vim.highlight.ColorColumn.ctermbg= 4

@@ -12,7 +12,7 @@ return {
 
                 A leader is a dealer in hope.               
         ]]
-    opts.section.header.val = vim.split(logo, "\n", { trimempty = false })
+    opts.section.header.val = vim.split(logo, "\n", { trimempty = true })
     opts.section.buttons.val = {
       dashboard.button("p", " " .. "Open project", "<cmd>Telescope project display_type=full<cr>"),
       dashboard.button("e", " " .. "New file", "<cmd>ene <BAR> startinsert<cr>"),
