@@ -8,6 +8,7 @@ local opt = vim.opt
 local options = {
 
   backup = false,
+  breakindent = true, -- This enables smart indentation
   clipboard = "unnamedplus", -- Sync with system clipboard
   colorcolumn = "80",
   completeopt = "menu,menuone,noselect",
