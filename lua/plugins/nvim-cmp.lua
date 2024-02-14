@@ -79,7 +79,7 @@ return {
           end
         end, { "i", "s" }),
       })
-
+      require("sg").setup({})
       local cmp = require("cmp")
 
       vim.list_extend(opts.sources, {
