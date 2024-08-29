@@ -19,11 +19,8 @@ return {
         "html",
         "json",
         "lua",
-<<<<<<< HEAD
-=======
         "markdown",
         "markdown_inline",
->>>>>>> 4e828fd (vdot stashing)
         "python",
         "query",
         "regex",
@@ -82,7 +79,6 @@ return {
           end
         end, { "i", "s" }),
       })
-<<<<<<< HEAD
       require("supermaven-nvim").setup({})
       vim.list_extend(opts.sources, {
         { name = "supermaven" },
@@ -90,15 +86,6 @@ return {
         { name = "nvim_lsp" },
         { name = "treesitter" },
         { name = "luasnip" },
-=======
-      require("sg").setup({})
-      local cmp = require("cmp")
-
-      vim.list_extend(opts.sources, {
-        { name = "tab9" },
-        { name = "emoji" },
-        { name = "cody" },
->>>>>>> 4e828fd (vdot stashing)
       })
     end,
   },
