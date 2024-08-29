@@ -19,8 +19,6 @@ return {
         "html",
         "json",
         "lua",
-        "markdown",
-        "markdown_inline",
         "python",
         "query",
         "regex",
@@ -79,13 +77,13 @@ return {
           end
         end, { "i", "s" }),
       })
-      require("sg").setup({})
-      local cmp = require("cmp")
-
+      require("supermaven-nvim").setup({})
       vim.list_extend(opts.sources, {
-        { name = "tab9" },
+        { name = "supermaven" },
         { name = "emoji" },
-        { name = "cody" },
+        { name = "nvim_lsp" },
+        { name = "treesitter" },
+        { name = "luasnip" },
       })
     end,
   },
