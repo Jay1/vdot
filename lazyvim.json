@@ -1,5 +1,6 @@
 {
   "extras": [
+<<<<<<< HEAD
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.dap.core",
@@ -16,15 +17,28 @@
     "lazyvim.plugins.extras.lang.sql",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.toml",
+=======
+    "lazyvim.plugins.extras.coding.tabnine",
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.tailwind",
+>>>>>>> 4e828fd (vdot stashing)
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.ui.alpha",
+<<<<<<< HEAD
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
   "news": {
     "NEWS.md": "6707"
+=======
+    "lazyvim.plugins.extras.editor.outline"
+  ],
+  "news": {
+    "NEWS.md": "6520"
+>>>>>>> 4e828fd (vdot stashing)
   },
   "version": 6
 }
