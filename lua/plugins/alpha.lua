@@ -3,7 +3,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local dashboard = require("alpha.themes.dashboard")
-    local icons_ok, icons = pcall(require, "nvim-web-devicons")
+    local icons = require("nvim-web-devicons")
 
     local function get_extension(fn)
       local match = fn:match("^.+(%..+)$")
@@ -15,25 +15,26 @@ return {
     end
 
     local function icon(fn)
+      local nwd = require("nvim-web-devicons")
       local ext = get_extension(fn)
-      if icons_ok then
-        local icon, iconhl = icons.get_icon(fn, ext, { default = true })
-        if icon then
-          return icon, iconhl
-        end
-      end
-      return "*", "Special"
+      return nwd.get_icon(fn, ext, { default = true })
     end
 
     local function file_button(fn, sc, short_fn)
       short_fn = short_fn or fn
-      local ico, ico_hl = icon(fn)
-      local ico_txt = ico .. " "
+      local ico, hl = icon(fn)
+      local ico_txt = ico and (ico .. "  ") or ""
       local file_button_el = dashboard.button(sc, ico_txt .. short_fn, "<cmd>e " .. fn .. " <CR>")
+
+      file_button_el.opts.hl = file_button_el.opts.hl or {}
 
       local fn_start = short_fn:match(".*[/\\]")
       if fn_start ~= nil then
-        file_button_el.opts.hl = "Comment"
+        table.insert(file_button_el.opts.hl, { "Comment", #ico_txt, #fn_start + #ico_txt })
+      end
+
+      if hl then
+        table.insert(file_button_el.opts.hl, { hl, 0, #ico_txt - 1 })
       end
 
       return file_button_el
@@ -52,7 +53,7 @@ return {
     --- @param items_number number optional number of items to generate, default = 10
     local function mru(start, cwd, items_number, opts)
       opts = opts or mru_opts
-      items_number = items_number or 10
+      items_number = items_number or 5 -- Changed to 5 most recent files
 
       local oldfiles = {}
       for _, v in pairs(vim.v.oldfiles) do
@@ -107,7 +108,7 @@ return {
       dashboard.button("f", "🔍 " .. "Find file", ":Telescope find_files <CR>"),
       dashboard.button("r", "⏳ " .. "Recent files", "<CMD>Telescope oldfiles<cr>"),
       dashboard.button("c", "💿 " .. "Config", ":e $MYVIMRC | :cd %:p:h | Telescope find_files<cr>"),
-      dashboard.button("l", "💗 " .. "Lazy", "<cmd>Lazy<cr>"),
+      dashboard.button("l", "🩷 " .. "Lazy", "<cmd>Lazy<cr>"),
       dashboard.button("v", "💙 " .. "LazyExtras", "<cmd>LazyExtras<cr>"),
       dashboard.button("m", "🧱 " .. "Mason", "<cmd>Mason<cr>"),
       dashboard.button("q", "❌ " .. "Quit", "<cmd>qa<cr>"),
@@ -148,15 +149,16 @@ return {
       },
     }
 
-    local config = {
+    local opts = {
       layout = {
-        { type = "padding", val = 2 },
+        { type = "padding", val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }) },
         section.header,
         { type = "padding", val = 2 },
         section.buttons,
         section.mru,
         { type = "padding", val = 1 },
         section.footer,
+        { type = "padding", val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }) },
       },
       opts = {
         margin = 5,
@@ -173,7 +175,7 @@ return {
       },
     }
 
-    require("alpha").setup(config)
+    require("alpha").setup(opts)
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",
