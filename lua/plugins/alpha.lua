@@ -53,7 +53,7 @@ return {
     --- @param items_number number optional number of items to generate, default = 10
     local function mru(start, cwd, items_number, opts)
       opts = opts or mru_opts
-      items_number = items_number or 5 -- Changed to 5 most recent files
+      items_number = items_number or 5 -- Show 5 most recent files
 
       local oldfiles = {}
       for _, v in pairs(vim.v.oldfiles) do
@@ -80,7 +80,7 @@ return {
         else
           short_fn = vim.fn.fnamemodify(fn, ":~")
         end
-        local file_button_el = file_button(fn, tostring(i + start - 1), short_fn)
+        local file_button_el = file_button(fn, tostring(i), short_fn) -- Changed from i + start - 1 to i
         tbl[i] = file_button_el
       end
       return {
