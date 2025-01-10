@@ -8,7 +8,7 @@ local g = vim.g
 local options = {
   -- File Handling
   backup = false, -- Disable backup files
-  swapfile = false, -- Disable swap files (better with UPS or cloud storage)
+  swapfile = false, -- Disable swap files
   undofile = true, -- Enable persistent undo history
   undolevels = 10000, -- Maximum number of changes that can be undone
   fileencoding = "utf-8", -- Default file encoding
